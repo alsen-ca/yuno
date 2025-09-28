@@ -10,5 +10,9 @@
     "branch": ["branches"],
     "branches": ["branch"],
     "a": ["an"],
-    "an": ["a"]
+    "an": ["a"],
+    ".gz": ["gz"],
+    "gz": [".gz"],
+    "recursively": ["recursive"],
+    "recursive": ["recursively"]
 }

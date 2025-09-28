@@ -1,6 +1,18 @@
 import os
 import readline
 import shlex
+import sys
+
+HELP_TEXT = """
+ q --n=[number of matches](optional) -t <topic>(optional) -q(optional) <query>     -> find matches
+ f -<n> < +|- >             -> feedback on last query, #n result
+ data -t <topic> -q <question> -a <answer>      -> add new entry
+ exit/quit                                      -> exit script
+ restart/reboot       -> restart this script with clean memory state
+ h                                              -> show this help
+
+"""
+
 
 class REPL:
     def __init__(self, qa_core):
@@ -9,17 +21,14 @@ class REPL:
         self.last_query_words = []
 
     def start(self):
-        HISTORY_FILE = os.path.expanduser("./qa_repl_history")
+        HISTORY_FILE = os.path.expanduser("/home/hamination/yuno/qa_repl_history")
         if os.path.exists(HISTORY_FILE):
             readline.read_history_file(HISTORY_FILE)
         readline.set_history_length(1000)
 
-        print("Interactive Q&A. Type 'exit' to quit.")
+        print("Yuno. Find answers through keywords")
         print("Commands:")
-        print(" q --n=[number of matches](optional) -t <topic>(optional) -q(optional) <query>     -> find matches")
-        print(" f -<n> < +|- >      -> feedback on last query, #n result")
-        print(" data -t <topic> -q <question> -a <answer>       -> add new entry")
-        print(" exit/quit       -> exit script\n")
+        print(HELP_TEXT)
 
         while True:
             raw = input("> ").strip()
@@ -40,6 +49,12 @@ class REPL:
                 self.handle_feedback(args)
             elif cmd == "data":
                 self.handle_data(args)
+            elif cmd in ("h", "-h", "help", "-help", "--h", "--help"):
+                print(HELP_TEXT)
+                continue
+            elif cmd in ("restart", "reboot"):
+                print("Restarting script...\n\n")
+                os.execl(sys.executable, sys.executable, *sys.argv)
             else:
                 print("Unknown command.")
             print()
@@ -95,7 +110,10 @@ class REPL:
             question = entry.get("question", "")
             answer = entry.get("answer", "")
             answer = answer.replace("\\n", "\n")
-            print(f"{idx}. {pct}% -> [{topic}] {question} ->        {answer}")
+            if "\n" in answer:
+                print(f"{idx}. {pct}% -> [{topic}] {question} ->        \n {answer}")
+            else:
+                print(f"{idx}. {pct}% -> [{topic}] {question} ->        {answer}")
 
 
     def handle_feedback(self, args):
