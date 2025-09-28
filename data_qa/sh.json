@@ -1,0 +1,41 @@
+[
+  {
+    "topic": "sh",
+    "question": "create folder",
+    "answer": "mkdir [folder_name]",
+    "weights": {
+      "create": 1.0,
+      "folder": 1.0
+    }
+  },
+  {
+    "topic": "sh",
+    "question": "create file",
+    "answer": "touch [filename]",
+    "weights": {
+      "create": 1.0,
+      "file": 1.0
+    }
+  },
+  {
+    "topic": "sh",
+    "question": "remove file",
+    "answer": "rm [filename]",
+    "weights": {
+      "remove": 1.0,
+      "file": 1.0
+    }
+  },
+  {
+    "topic": "sh",
+    "question": "replace regex on a file",
+    "answer": "sed -i 's/[regex old]/[regex new]/' path/to/file",
+    "weights": {
+      "replace": 1.0,
+      "regex": 1.0,
+      "on": 1.0,
+      "a": 1.0,
+      "file": 1.0
+    }
+  }
+]

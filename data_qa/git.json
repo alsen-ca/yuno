@@ -1,0 +1,23 @@
+[
+  {
+    "topic": "git",
+    "question": "new repo",
+    "answer": "git init",
+    "weights": {
+      "new": 1.0,
+      "repo": 1.0
+    }
+  },
+  {
+    "topic": "git",
+    "question": "new repo with custom name",
+    "answer": "git init <repo_name>",
+    "weights": {
+      "new": 1.0,
+      "repo": 1.0,
+      "with": 0.3,
+      "custom": 0.8,
+      "name": 0.5
+    }
+  }
+]

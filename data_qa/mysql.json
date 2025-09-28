@@ -1,0 +1,20 @@
+[
+  {
+    "topic": "mysql",
+    "question": "new user",
+    "answer": "Use CREATE USER in MySQL.",
+    "weights": {
+      "new": 1.2,
+      "user": 1.2
+    }
+  },
+  {
+    "topic": "mysql",
+    "question": "new database",
+    "answer": "create database [db_name]'",
+    "weights": {
+      "new": 1.0,
+      "database": 1.0
+    }
+  }
+]
