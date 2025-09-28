@@ -1,0 +1,14 @@
+{
+    "create": ["new", "add"],
+    "new": ["create", "add"],
+    "app": ["application"],
+    "application": ["app"],
+    "repo": ["repository"],
+    "repository": ["repo"],
+    "change": ["swicth"],
+    "switch": ["change"],
+    "branch": ["branches"],
+    "branches": ["branch"],
+    "a": ["an"],
+    "an": ["a"]
+}

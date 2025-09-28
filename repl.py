@@ -49,7 +49,7 @@ class REPL:
     def handle_query(self, query):
         tokens = query.split()
         topic_filter = None
-        top_n = 5
+        top_n = 4
 
         idx = 0
         query_words = []

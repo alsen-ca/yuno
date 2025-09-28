@@ -6,18 +6,10 @@ class QAEngine:
     WEIGHT_MAX = 4.0
     WEIGHT_STEP = 0.2
 
-    SYNONYMS = {
-        "create": ["new", "add"],
-        "new": ["create", "add"],
-        "app": ["application"],
-        "application": ["app"],
-        "repo": ["repository"],
-        "repository": ["repo"]
-    }
-
-    def __init__(self, folderpath):
+    def __init__(self, folderpath, synonyms_file="synonyms.json"):
         self.folderpath = folderpath
         self.qa_list = self.load_qa_folder(folderpath)
+        self.synonyms = self.load_synonyms(synonyms_file)
 
     def load_qa_folder(self, folderpath):
         qa_list = []
@@ -37,6 +29,12 @@ class QAEngine:
                 return data
         except Exception:
             return []
+        
+    def load_synonyms(self, filepath):
+        if os.path.exists(filepath):
+            with open(filepath, "r") as f:
+                return json.load(f)
+        return {}
 
     def score(self, query, entry):
         query_words = query.lower().split()
@@ -48,7 +46,7 @@ class QAEngine:
             # exact match
             score += weights.get(word, 0)
             # check synonyms
-            for syn in self.SYNONYMS.get(word, []):
+            for syn in self.synonyms.get(word, []):
                 score += weights.get(syn, 0)
         return score
 

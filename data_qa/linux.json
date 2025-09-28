@@ -1,6 +1,6 @@
 [
   {
-    "topic": "sh",
+    "topic": "linux",
     "question": "create folder",
     "answer": "mkdir [folder_name]",
     "weights": {
@@ -9,7 +9,7 @@
     }
   },
   {
-    "topic": "sh",
+    "topic": "linux",
     "question": "create file",
     "answer": "touch [filename]",
     "weights": {
@@ -18,7 +18,7 @@
     }
   },
   {
-    "topic": "sh",
+    "topic": "linux",
     "question": "remove file",
     "answer": "rm [filename]",
     "weights": {
@@ -27,15 +27,27 @@
     }
   },
   {
-    "topic": "sh",
+    "topic": "linux",
     "question": "replace regex on a file",
     "answer": "sed -i 's/[regex old]/[regex new]/' path/to/file",
     "weights": {
       "replace": 1.0,
       "regex": 1.0,
-      "on": 1.0,
-      "a": 1.0,
+      "on": 0.2,
+      "a": 0.2,
       "file": 1.0
+    }
+  },
+  {
+    "topic": "linux",
+    "question": "count lines on a folder",
+    "answer": "clock .",
+    "weights": {
+      "count": 1.5,
+      "lines": 1.5,
+      "on": 0.2,
+      "a": 0.2,
+      "folder": 1.0
     }
   }
 ]

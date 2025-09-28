@@ -19,5 +19,67 @@
       "custom": 0.8,
       "name": 0.5
     }
+  },
+  {
+    "topic": "git",
+    "question": "connect local repo to remote",
+    "answer": "git add . \\n git commit -m [commit message] \\n git branch -M main \\n git remote add origin git@github.com:alsen-ca/[repo_name].git \\n git push -u origin main",
+    "weights": {
+      "connect": 1.0,
+      "local": 1.0,
+      "repo": 1.0,
+      "to": 0.2,
+      "remote": 1.0
+    }
+  },
+  {
+    "topic": "git",
+    "question": "create branch",
+    "answer": "git branch [branchname]",
+    "weights": {
+      "create": 1.0,
+      "branch": 1.0
+    }
+  },
+  {
+    "topic": "git",
+    "question": "create and switch to branch",
+    "answer": "git checkout -b [branchname]",
+    "weights": {
+      "create": 2.0,
+      "and": 0.2,
+      "switch": 2.0,
+      "to": 0.2,
+      "branch": 2.0
+    }
+  },
+  {
+    "topic": "git",
+    "question": "add tag",
+    "answer": "git tag [tagversion] \\n git push origin [tagversion]",
+    "weights": {
+      "add": 1.0,
+      "tag": 1.0
+    }
+  },
+  {
+    "topic": "git",
+    "question": "add tag with message",
+    "answer": "git tag -a [tagversion] -m [message] \\n git push origin [tagversion]",
+    "weights": {
+      "add": 1.0,
+      "tag": 1.0,
+      "with": 0.2,
+      "message": 1.0
+    }
+  },
+  {
+    "topic": "git",
+    "question": "change branches",
+    "answer": "git switch [new_branch]",
+    "weights": {
+      "change": 1.0,
+      "branches": 1.0
+    }
   }
 ]
