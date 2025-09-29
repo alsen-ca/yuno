@@ -78,15 +78,26 @@ class QAEngine:
         self.qa_list = self.loader.load_all()
 
 
-    def find_matches(self, query, top_n=5, qa_list=None):
+    def find_matches(self, query, search_in_answer=False, top_n=5, qa_list=None):
         if qa_list is None:
             qa_list = self.qa_list
 
-        scored = [
-            (self.scorer.score(query, entry), entry)
-            for entry in qa_list
-            if self.scorer.score(query, entry) > 0
-        ]
+        query_words = query.lower().split()
+        scored = []
+
+        for entry in qa_list:
+            # always check question
+            score_val = self.scorer.score(query, entry)
+
+            # if -a flag was passed, also score the answer text
+            if search_in_answer:
+                answer_text = entry.get("answer", "").lower()
+                for w in query_words:
+                    if w in answer_text:
+                        score_val += 1.0  # or add some weight of your choice
+
+            if score_val > 0:
+                scored.append((score_val, entry))
 
         if not scored:
             return []

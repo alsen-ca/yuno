@@ -65,24 +65,30 @@ class REPL:
         tokens = query.split()
         topic_filter = None
         top_n = 4
-
-        idx = 0
+        search_in_answer = False
         query_words = []
+        idx = 0
+
         while idx < len(tokens):
             token = tokens[idx]
-            if token.startswith("--n="):
+            if token.startswith("-n="):
                 try:
                     top_n = int(token.split("=")[1])
                 except ValueError:
-                    print(f"Invalid number for --n: {token}")
+                    print(f"Invalid number for -n: {token}")
                     return
                 idx += 1
             elif token == "-t" and idx + 1 < len(tokens):
                 topic_filter = tokens[idx + 1]
                 idx += 2
+            elif token == "-a":  # search in answers
+                search_in_answer = True
+                idx += 1
             else:
                 query_words.append(token)
                 idx += 1
+
+
 
         if not query_words:
             print("No query provided.")
@@ -97,7 +103,7 @@ class REPL:
         else:
             filtered_list = self.qa_core.qa_list
 
-        results = self.qa_core.find_matches(query_str, top_n=top_n, qa_list=filtered_list)
+        results = self.qa_core.find_matches(query_str, search_in_answer, top_n=top_n, qa_list=filtered_list)
         if not results:
             print("No matches found.")
             self.last_results = []

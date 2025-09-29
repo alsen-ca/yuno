@@ -14,5 +14,9 @@
     ".gz": ["gz"],
     "gz": [".gz"],
     "recursively": ["recursive"],
-    "recursive": ["recursively"]
+    "recursive": ["recursively"],
+    "database": ["db"],
+    "db": ["database"],
+    "seed": ["seeds"],
+    "seeds": ["seed"]
 }
