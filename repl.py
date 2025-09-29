@@ -13,6 +13,12 @@ HELP_TEXT = """
 
 """
 
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[94m"
+WHITE = "\033[37m"
+RED = "\033[91m"
+RESET = "\033[0m"
 
 class REPL:
     def __init__(self, qa_core):
@@ -52,11 +58,12 @@ class REPL:
             elif cmd in ("h", "-h", "help", "-help", "--h", "--help"):
                 print(HELP_TEXT)
                 continue
-            elif cmd in ("restart", "reboot"):
+            elif cmd in ("restart", "reboot", "r"):
                 print("Restarting script...\n\n")
                 os.execl(sys.executable, sys.executable, *sys.argv)
             else:
-                print("Unknown command.")
+                unkown_str = f"{RED}Unkown command{RESET}"
+                print(unkown_str)
             print()
 
             readline.write_history_file(HISTORY_FILE)
@@ -110,16 +117,22 @@ class REPL:
             return
 
         self.last_results = results
-        print("==== Top results  ====")
+        
+        print(f"{GREEN}==== Top results ===={RESET}")
         for idx, (pct, entry) in enumerate(results, start=1):
             topic = entry.get("topic", "default")
             question = entry.get("question", "")
             answer = entry.get("answer", "")
             answer = answer.replace("\\n", "\n")
+
+            number_str = f"{YELLOW}{idx}{RESET}"
+            question_str = f"{BLUE}{question}{RESET}"
+            topic_str = f"{RED}{topic}{RESET}"
+
             if "\n" in answer:
-                print(f"{idx}. {pct}% -> [{topic}] {question} ->        \n {answer}")
+                print(f"{number_str}. {pct}% -> [{topic_str}] {question_str} ->        \n {answer}")
             else:
-                print(f"{idx}. {pct}% -> [{topic}] {question} ->        {answer}")
+                print(f"{number_str}. {pct}% -> [{topic_str}] {question_str} ->        {answer}")
 
 
     def handle_feedback(self, args):
