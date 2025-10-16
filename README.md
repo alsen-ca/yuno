@@ -10,8 +10,11 @@ Release versions in GitHub have the latest code as well as a downabable zip with
 # Commands
 ## q
 q: Write q followed by keywords that are searched
+
 q -n=[n]: insert in [n] the amount of results that should be printed. Default is set to 4
+
 q -t: Limit a search to only a given a topic
+
 q -a: Search for a keyword not only in the questions but also in the answers
 
 ### Examples
@@ -48,3 +51,5 @@ Putting - will decrease each weight by 0.2
 
 # License
 This project is licensed under the MIT License.
+
+Read the full license here: [MIT License](LICENSE)
