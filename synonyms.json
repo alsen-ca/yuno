@@ -18,5 +18,21 @@
     "database": ["db"],
     "db": ["database"],
     "seed": ["seeds"],
-    "seeds": ["seed"]
+    "seeds": ["seed"],
+    "drop": ["delete"],
+    "route": ["routes"],
+    "routes": ["route"],
+    "views": ["view"],
+    "view": ["views"],
+    "firewall": ["firewalld"],
+    "firewalld": ["firewall"],
+    "config": ["configuration"],
+    "configuration": ["config"],
+    "alias": ["aliases"],
+    "aliases": ["alias"],
+    "restart": ["reload"],
+    "all": ["everything"],
+    "everything": ["all"],
+    "alongisde": ["along"],
+    "along": ["alongside"]
 }

@@ -4,12 +4,13 @@ import shlex
 import sys
 
 HELP_TEXT = """
- q --n=[number of matches](optional) -t <topic>(optional) -q(optional) <query>     -> find matches
+ q -n=[number of matches](optional) -t <topic>(optional) -q(optional) <query>     -> find matches
  f -<n> < +|- >             -> feedback on last query, #n result
  data -t <topic> -q <question> -a <answer>      -> add new entry
- exit/quit                                      -> exit script
- restart/reboot       -> restart this script with clean memory state
+ exit/e/quit                                      -> exit script
+ restart/reboot/r       -> restart this script with clean memory state
  h                                              -> show this help
+ about                                          -> Show information
 
 """
 
@@ -32,15 +33,14 @@ class REPL:
             readline.read_history_file(HISTORY_FILE)
         readline.set_history_length(1000)
 
-        print("Yuno. Find answers through keywords")
-        print("Commands:")
-        print(HELP_TEXT)
+        print("Yuno. Find answers through keywords.")
+        print("Write 'h' for help. Write 'exit' to terminate programm")
 
         while True:
             raw = input("> ").strip()
             if not raw:
                 continue
-            if raw in ("exit", "quit"):
+            if raw in ("exit", "quit", "e"):
                 print("\nExiting... Bye")
                 break
 
@@ -61,6 +61,8 @@ class REPL:
             elif cmd in ("restart", "reboot", "r"):
                 print("Restarting script...\n\n")
                 os.execl(sys.executable, sys.executable, *sys.argv)
+            elif cmd == "about":
+                self.show_info()
             else:
                 unkown_str = f"{RED}Unkown command{RESET}"
                 print(unkown_str)
@@ -211,3 +213,5 @@ class REPL:
         self.qa_core.add_entry(entry)
         print(f"Added entry: {entry}")
             
+    def show_info(self):
+        print("github.com/alsen-ca/yuno")
