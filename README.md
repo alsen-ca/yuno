@@ -2,6 +2,8 @@
 This is a simple keyword matching script.
 It opens a never ending loop in a terminal where one can search for questions that one has written the answer to, through the use of keywords.
 
+The api_server and Dockerfile are not functional. They were just written as an starter point of its possible use.
+
 # Relase
 Release versions in GitHub have the latest code as well as a downabable zip with the data_qa folder with all the required content
 
@@ -43,3 +45,6 @@ Only the weights of those words that have been put on the q search will be updat
 
 Putting + will increase each weight by 0.2
 Putting - will decrease each weight by 0.2
+
+# License
+This project is licensed under the MIT License.
